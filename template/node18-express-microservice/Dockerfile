@@ -24,7 +24,7 @@ WORKDIR /home/app
 COPY --chown=app:app package.json ./
 
 # This ordering means the npm installation is cached for the outer function handler.
-RUN npm i
+RUN yarn --no-cache --frozen-lockfile || :
 
 # Copy outer function handler
 COPY --chown=app:app index.js ./
