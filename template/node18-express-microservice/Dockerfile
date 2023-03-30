@@ -1,8 +1,8 @@
-# Copyright by Alex Ellis MIT (https://github.com/openfaas-incubator/node10-express-template), adopted by Nicolai Schmid
+FROM --platform=${TARGETPLATFORM:-linux/amd64} ghcr.io/openfaas/of-watchdog:0.9.11 as watchdog
+FROM --platform=${TARGETPLATFORM:-linux/amd64} node:18-alpine as ship
 
-FROM openfaas/of-watchdog:0.9.11 as watchdog
-
-FROM node:18-alpine as ship
+ARG TARGETPLATFORM
+ARG BUILDPLATFORM
 
 COPY --from=watchdog /fwatchdog /usr/bin/fwatchdog
 RUN chmod +x /usr/bin/fwatchdog
