@@ -1,0 +1,2 @@
+language: node18-express-microservice
+fprocess: node index.js
